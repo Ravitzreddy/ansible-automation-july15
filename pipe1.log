@@ -1,0 +1,1181 @@
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [localhost]
+
+TASK [create vpc for "{{ item.vname }}"] *****************************************************************************************
+changed: [localhost] => (item=[{'vpcname': 'VPC-A'}, {'vpccidr': '10.0.0.0/16', 'vpcregion': 'ap-south-1', 'IGW': True}])
+changed: [localhost] => (item=[{'vpcname': 'VPC-B'}, {'vpccidr': '10.1.0.0/16', 'vpcregion': 'ap-south-1', 'IGW': True}])
+
+TASK [setfacts] ******************************************************************************************************************
+ok: [localhost] => (item={'changed': True, 'vpc': {'cidr_block': '10.0.0.0/16', 'dhcp_options_id': 'dopt-47839d2f', 'state': 'available', 'owner_id': '802778636482', 'instance_tenancy': 'default', 'cidr_block_association_set': [{'association_id': 'vpc-cidr-assoc-0a609e1f25f67d374', 'cidr_block': '10.0.0.0/16', 'cidr_block_state': {'state': 'associated'}}], 'is_default': False, 'tags': {'Name': 'VPC-A'}, 'classic_link_enabled': False, 'id': 'vpc-0189dd71d9ff0b91b'}, 'invocation': {'module_args': {'name': 'VPC-A', 'state': 'present', 'cidr_block': ['10.0.0.0/16'], 'region': 'ap-south-1', 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'tenancy': 'default', 'dns_support': True, 'dns_hostnames': True, 'multi_ok': False, 'purge_cidrs': False, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'dhcp_opts_id': None, 'tags': None}}, 'failed': False, 'item': [{'vpcname': 'VPC-A'}, {'vpccidr': '10.0.0.0/16', 'vpcregion': 'ap-south-1', 'IGW': True}], 'ansible_loop_var': 'item'})
+ok: [localhost] => (item={'changed': True, 'vpc': {'cidr_block': '10.1.0.0/16', 'dhcp_options_id': 'dopt-47839d2f', 'state': 'available', 'owner_id': '802778636482', 'instance_tenancy': 'default', 'cidr_block_association_set': [{'association_id': 'vpc-cidr-assoc-0107777ad2ee7da26', 'cidr_block': '10.1.0.0/16', 'cidr_block_state': {'state': 'associated'}}], 'is_default': False, 'tags': {'Name': 'VPC-B'}, 'classic_link_enabled': False, 'id': 'vpc-05715f6e510e2fc54'}, 'invocation': {'module_args': {'name': 'VPC-B', 'state': 'present', 'cidr_block': ['10.1.0.0/16'], 'region': 'ap-south-1', 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'tenancy': 'default', 'dns_support': True, 'dns_hostnames': True, 'multi_ok': False, 'purge_cidrs': False, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'dhcp_opts_id': None, 'tags': None}}, 'failed': False, 'item': [{'vpcname': 'VPC-B'}, {'vpccidr': '10.1.0.0/16', 'vpcregion': 'ap-south-1', 'IGW': True}], 'ansible_loop_var': 'item'})
+
+TASK [debugsetfacts] *************************************************************************************************************
+ok: [localhost] => {
+    "msg": {
+        "VPC-A": "vpc-0189dd71d9ff0b91b",
+        "VPC-B": "vpc-05715f6e510e2fc54"
+    }
+}
+
+TASK [create internetgateway] ****************************************************************************************************
+changed: [localhost] => (item={'changed': True, 'vpc': {'cidr_block': '10.0.0.0/16', 'dhcp_options_id': 'dopt-47839d2f', 'state': 'available', 'owner_id': '802778636482', 'instance_tenancy': 'default', 'cidr_block_association_set': [{'association_id': 'vpc-cidr-assoc-0a609e1f25f67d374', 'cidr_block': '10.0.0.0/16', 'cidr_block_state': {'state': 'associated'}}], 'is_default': False, 'tags': {'Name': 'VPC-A'}, 'classic_link_enabled': False, 'id': 'vpc-0189dd71d9ff0b91b'}, 'invocation': {'module_args': {'name': 'VPC-A', 'state': 'present', 'cidr_block': ['10.0.0.0/16'], 'region': 'ap-south-1', 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'tenancy': 'default', 'dns_support': True, 'dns_hostnames': True, 'multi_ok': False, 'purge_cidrs': False, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'dhcp_opts_id': None, 'tags': None}}, 'failed': False, 'item': [{'vpcname': 'VPC-A'}, {'vpccidr': '10.0.0.0/16', 'vpcregion': 'ap-south-1', 'IGW': True}], 'ansible_loop_var': 'item'})
+changed: [localhost] => (item={'changed': True, 'vpc': {'cidr_block': '10.1.0.0/16', 'dhcp_options_id': 'dopt-47839d2f', 'state': 'available', 'owner_id': '802778636482', 'instance_tenancy': 'default', 'cidr_block_association_set': [{'association_id': 'vpc-cidr-assoc-0107777ad2ee7da26', 'cidr_block': '10.1.0.0/16', 'cidr_block_state': {'state': 'associated'}}], 'is_default': False, 'tags': {'Name': 'VPC-B'}, 'classic_link_enabled': False, 'id': 'vpc-05715f6e510e2fc54'}, 'invocation': {'module_args': {'name': 'VPC-B', 'state': 'present', 'cidr_block': ['10.1.0.0/16'], 'region': 'ap-south-1', 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'tenancy': 'default', 'dns_support': True, 'dns_hostnames': True, 'multi_ok': False, 'purge_cidrs': False, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'dhcp_opts_id': None, 'tags': None}}, 'failed': False, 'item': [{'vpcname': 'VPC-B'}, {'vpccidr': '10.1.0.0/16', 'vpcregion': 'ap-south-1', 'IGW': True}], 'ansible_loop_var': 'item'})
+
+TASK [debugcreate_vpcigw] ********************************************************************************************************
+ok: [localhost] => (item={'changed': True, 'gateway_id': 'igw-060c18a08b574b8e4', 'tags': {'Name': 'vpc-a-IGW'}, 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'invocation': {'module_args': {'vpc_id': 'vpc-0189dd71d9ff0b91b', 'region': 'ap-south-1', 'state': 'present', 'tags': {'Name': 'vpc-a-IGW'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': {'changed': True, 'vpc': {'cidr_block': '10.0.0.0/16', 'dhcp_options_id': 'dopt-47839d2f', 'state': 'available', 'owner_id': '802778636482', 'instance_tenancy': 'default', 'cidr_block_association_set': [{'association_id': 'vpc-cidr-assoc-0a609e1f25f67d374', 'cidr_block': '10.0.0.0/16', 'cidr_block_state': {'state': 'associated'}}], 'is_default': False, 'tags': {'Name': 'VPC-A'}, 'classic_link_enabled': False, 'id': 'vpc-0189dd71d9ff0b91b'}, 'invocation': {'module_args': {'name': 'VPC-A', 'state': 'present', 'cidr_block': ['10.0.0.0/16'], 'region': 'ap-south-1', 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'tenancy': 'default', 'dns_support': True, 'dns_hostnames': True, 'multi_ok': False, 'purge_cidrs': False, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'dhcp_opts_id': None, 'tags': None}}, 'failed': False, 'item': [{'vpcname': 'VPC-A'}, {'vpccidr': '10.0.0.0/16', 'vpcregion': 'ap-south-1', 'IGW': True}], 'ansible_loop_var': 'item'}, 'ansible_loop_var': 'item'})
+ok: [localhost] => (item={'changed': True, 'gateway_id': 'igw-0268dda0a73e1e6c1', 'tags': {'Name': 'vpc-b-IGW'}, 'vpc_id': 'vpc-05715f6e510e2fc54', 'invocation': {'module_args': {'vpc_id': 'vpc-05715f6e510e2fc54', 'region': 'ap-south-1', 'state': 'present', 'tags': {'Name': 'vpc-b-IGW'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': {'changed': True, 'vpc': {'cidr_block': '10.1.0.0/16', 'dhcp_options_id': 'dopt-47839d2f', 'state': 'available', 'owner_id': '802778636482', 'instance_tenancy': 'default', 'cidr_block_association_set': [{'association_id': 'vpc-cidr-assoc-0107777ad2ee7da26', 'cidr_block': '10.1.0.0/16', 'cidr_block_state': {'state': 'associated'}}], 'is_default': False, 'tags': {'Name': 'VPC-B'}, 'classic_link_enabled': False, 'id': 'vpc-05715f6e510e2fc54'}, 'invocation': {'module_args': {'name': 'VPC-B', 'state': 'present', 'cidr_block': ['10.1.0.0/16'], 'region': 'ap-south-1', 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'tenancy': 'default', 'dns_support': True, 'dns_hostnames': True, 'multi_ok': False, 'purge_cidrs': False, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'dhcp_opts_id': None, 'tags': None}}, 'failed': False, 'item': [{'vpcname': 'VPC-B'}, {'vpccidr': '10.1.0.0/16', 'vpcregion': 'ap-south-1', 'IGW': True}], 'ansible_loop_var': 'item'}, 'ansible_loop_var': 'item'})
+
+TASK [debugigw_ids] **************************************************************************************************************
+ok: [localhost] => {
+    "msg": {
+        "vpc-a-IGW": "igw-060c18a08b574b8e4",
+        "vpc-b-IGW": "igw-0268dda0a73e1e6c1"
+    }
+}
+
+TASK [copy files all1.yaml to all2.yaml] *****************************************************************************************
+changed: [localhost]
+
+TASK [replace VPC-A VPC-B with VPC-ids] ******************************************************************************************
+changed: [localhost] => (item={'key': 'VPC-A', 'value': 'vpc-0189dd71d9ff0b91b'})
+changed: [localhost] => (item={'key': 'VPC-B', 'value': 'vpc-05715f6e510e2fc54'})
+
+TASK [replace vpc-a-igw and vpc-b-igw in var file all2.yaml] *********************************************************************
+changed: [localhost] => (item={'key': 'vpc-a-IGW', 'value': 'igw-060c18a08b574b8e4'})
+changed: [localhost] => (item={'key': 'vpc-b-IGW', 'value': 'igw-0268dda0a73e1e6c1'})
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=10   changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [localhost]
+
+TASK [create subnets for az apsouth1a] *******************************************************************************************
+changed: [localhost] => (item=[{'subnetname': 'SUB1-PUB-VPCA'}, {'subcidr': '10.0.5.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-0189dd71d9ff0b91b', 'subtags': 'publicsubnet-vpc1', 'sumap_public': True}])
+changed: [localhost] => (item=[{'subnetname': 'SUB2-PRI-VPCA'}, {'subcidr': '10.0.6.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-0189dd71d9ff0b91b', 'subtags': 'privatesubnet-vpc1', 'sumap_public': False}])
+changed: [localhost] => (item=[{'subnetname': 'SUB3-PRI-VPCA'}, {'subcidr': '10.0.7.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-0189dd71d9ff0b91b', 'subtags': 'privatesubnet-vpc1', 'sumap_public': False}])
+changed: [localhost] => (item=[{'subnetname': 'SUB4-PRI-VPCB'}, {'subcidr': '10.1.8.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-05715f6e510e2fc54', 'subtags': 'privatesubnet-vpc2', 'sumap_public': False}])
+changed: [localhost] => (item=[{'subnetname': 'SUB6-PUB-VPCB'}, {'subcidr': '10.1.9.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-05715f6e510e2fc54', 'subtags': 'publicsubnet-vpc2', 'sumap_public': False}])
+
+TASK [create subnets for az apsouth1b] *******************************************************************************************
+changed: [localhost] => (item=[{'subnetname': 'SUB5-PUB-VPCA'}, {'subcidr': '10.0.10.0/24', 'subaz': 'ap-south-1b', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-0189dd71d9ff0b91b', 'subtags': 'publicsubnet-vpc1', 'sumap_public': True}])
+
+TASK [set facts of subnet id's] **************************************************************************************************
+ok: [localhost] => (item={'changed': True, 'subnet': {'availability_zone': 'ap-south-1a', 'availability_zone_id': 'aps1-az1', 'available_ip_address_count': 251, 'cidr_block': '10.0.5.0/24', 'default_for_az': False, 'map_public_ip_on_launch': True, 'state': 'available', 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'owner_id': '802778636482', 'assign_ipv6_address_on_creation': False, 'ipv6_cidr_block_association_set': [], 'tags': {'Name': 'SUB1-PUB-VPCA'}, 'subnet_arn': 'arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0e97183facf2d81e0', 'id': 'subnet-0e97183facf2d81e0', 'ipv6_cidr_block': '', 'ipv6_association_id': ''}, 'invocation': {'module_args': {'state': 'present', 'tags': {'Name': 'SUB1-PUB-VPCA'}, 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'region': 'ap-south-1', 'cidr': '10.0.5.0/24', 'az': 'ap-south-1a', 'map_public': True, 'resource_tags': {'Name': 'SUB1-PUB-VPCA'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ipv6_cidr': '', 'assign_instances_ipv6': False, 'wait': True, 'wait_timeout': 300, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': [{'subnetname': 'SUB1-PUB-VPCA'}, {'subcidr': '10.0.5.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-0189dd71d9ff0b91b', 'subtags': 'publicsubnet-vpc1', 'sumap_public': True}], 'ansible_loop_var': 'item'})
+ok: [localhost] => (item={'changed': True, 'subnet': {'availability_zone': 'ap-south-1a', 'availability_zone_id': 'aps1-az1', 'available_ip_address_count': 251, 'cidr_block': '10.0.6.0/24', 'default_for_az': False, 'map_public_ip_on_launch': False, 'state': 'available', 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'owner_id': '802778636482', 'assign_ipv6_address_on_creation': False, 'ipv6_cidr_block_association_set': [], 'tags': {'Name': 'SUB2-PRI-VPCA'}, 'subnet_arn': 'arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0f4d069d6cb4cfb9f', 'id': 'subnet-0f4d069d6cb4cfb9f', 'ipv6_cidr_block': '', 'ipv6_association_id': ''}, 'invocation': {'module_args': {'state': 'present', 'tags': {'Name': 'SUB2-PRI-VPCA'}, 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'region': 'ap-south-1', 'cidr': '10.0.6.0/24', 'az': 'ap-south-1a', 'map_public': False, 'resource_tags': {'Name': 'SUB2-PRI-VPCA'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ipv6_cidr': '', 'assign_instances_ipv6': False, 'wait': True, 'wait_timeout': 300, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': [{'subnetname': 'SUB2-PRI-VPCA'}, {'subcidr': '10.0.6.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-0189dd71d9ff0b91b', 'subtags': 'privatesubnet-vpc1', 'sumap_public': False}], 'ansible_loop_var': 'item'})
+ok: [localhost] => (item={'changed': True, 'subnet': {'availability_zone': 'ap-south-1a', 'availability_zone_id': 'aps1-az1', 'available_ip_address_count': 251, 'cidr_block': '10.0.7.0/24', 'default_for_az': False, 'map_public_ip_on_launch': False, 'state': 'available', 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'owner_id': '802778636482', 'assign_ipv6_address_on_creation': False, 'ipv6_cidr_block_association_set': [], 'tags': {'Name': 'SUB3-PRI-VPCA'}, 'subnet_arn': 'arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0c4bc2ad9da77b24c', 'id': 'subnet-0c4bc2ad9da77b24c', 'ipv6_cidr_block': '', 'ipv6_association_id': ''}, 'invocation': {'module_args': {'state': 'present', 'tags': {'Name': 'SUB3-PRI-VPCA'}, 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'region': 'ap-south-1', 'cidr': '10.0.7.0/24', 'az': 'ap-south-1a', 'map_public': False, 'resource_tags': {'Name': 'SUB3-PRI-VPCA'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ipv6_cidr': '', 'assign_instances_ipv6': False, 'wait': True, 'wait_timeout': 300, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': [{'subnetname': 'SUB3-PRI-VPCA'}, {'subcidr': '10.0.7.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-0189dd71d9ff0b91b', 'subtags': 'privatesubnet-vpc1', 'sumap_public': False}], 'ansible_loop_var': 'item'})
+ok: [localhost] => (item={'changed': True, 'subnet': {'availability_zone': 'ap-south-1a', 'availability_zone_id': 'aps1-az1', 'available_ip_address_count': 251, 'cidr_block': '10.1.8.0/24', 'default_for_az': False, 'map_public_ip_on_launch': False, 'state': 'available', 'vpc_id': 'vpc-05715f6e510e2fc54', 'owner_id': '802778636482', 'assign_ipv6_address_on_creation': False, 'ipv6_cidr_block_association_set': [], 'tags': {'Name': 'SUB4-PRI-VPCB'}, 'subnet_arn': 'arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0f0d71068b9316212', 'id': 'subnet-0f0d71068b9316212', 'ipv6_cidr_block': '', 'ipv6_association_id': ''}, 'invocation': {'module_args': {'state': 'present', 'tags': {'Name': 'SUB4-PRI-VPCB'}, 'vpc_id': 'vpc-05715f6e510e2fc54', 'region': 'ap-south-1', 'cidr': '10.1.8.0/24', 'az': 'ap-south-1a', 'map_public': False, 'resource_tags': {'Name': 'SUB4-PRI-VPCB'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ipv6_cidr': '', 'assign_instances_ipv6': False, 'wait': True, 'wait_timeout': 300, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': [{'subnetname': 'SUB4-PRI-VPCB'}, {'subcidr': '10.1.8.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-05715f6e510e2fc54', 'subtags': 'privatesubnet-vpc2', 'sumap_public': False}], 'ansible_loop_var': 'item'})
+ok: [localhost] => (item={'changed': True, 'subnet': {'availability_zone': 'ap-south-1a', 'availability_zone_id': 'aps1-az1', 'available_ip_address_count': 251, 'cidr_block': '10.1.9.0/24', 'default_for_az': False, 'map_public_ip_on_launch': False, 'state': 'available', 'vpc_id': 'vpc-05715f6e510e2fc54', 'owner_id': '802778636482', 'assign_ipv6_address_on_creation': False, 'ipv6_cidr_block_association_set': [], 'tags': {'Name': 'SUB6-PUB-VPCB'}, 'subnet_arn': 'arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0435b28be96df93c0', 'id': 'subnet-0435b28be96df93c0', 'ipv6_cidr_block': '', 'ipv6_association_id': ''}, 'invocation': {'module_args': {'state': 'present', 'tags': {'Name': 'SUB6-PUB-VPCB'}, 'vpc_id': 'vpc-05715f6e510e2fc54', 'region': 'ap-south-1', 'cidr': '10.1.9.0/24', 'az': 'ap-south-1a', 'map_public': False, 'resource_tags': {'Name': 'SUB6-PUB-VPCB'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ipv6_cidr': '', 'assign_instances_ipv6': False, 'wait': True, 'wait_timeout': 300, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': [{'subnetname': 'SUB6-PUB-VPCB'}, {'subcidr': '10.1.9.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-05715f6e510e2fc54', 'subtags': 'publicsubnet-vpc2', 'sumap_public': False}], 'ansible_loop_var': 'item'})
+ok: [localhost] => (item={'changed': True, 'subnet': {'availability_zone': 'ap-south-1b', 'availability_zone_id': 'aps1-az3', 'available_ip_address_count': 251, 'cidr_block': '10.0.10.0/24', 'default_for_az': False, 'map_public_ip_on_launch': True, 'state': 'available', 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'owner_id': '802778636482', 'assign_ipv6_address_on_creation': False, 'ipv6_cidr_block_association_set': [], 'tags': {'Name': 'SUB5-PUB-VPCA'}, 'subnet_arn': 'arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-081c8280a148cafb9', 'id': 'subnet-081c8280a148cafb9', 'ipv6_cidr_block': '', 'ipv6_association_id': ''}, 'invocation': {'module_args': {'state': 'present', 'tags': {'Name': 'SUB5-PUB-VPCA'}, 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'region': 'ap-south-1', 'cidr': '10.0.10.0/24', 'az': 'ap-south-1b', 'map_public': True, 'resource_tags': {'Name': 'SUB5-PUB-VPCA'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ipv6_cidr': '', 'assign_instances_ipv6': False, 'wait': True, 'wait_timeout': 300, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': [{'subnetname': 'SUB5-PUB-VPCA'}, {'subcidr': '10.0.10.0/24', 'subaz': 'ap-south-1b', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-0189dd71d9ff0b91b', 'subtags': 'publicsubnet-vpc1', 'sumap_public': True}], 'ansible_loop_var': 'item'})
+
+TASK [debug set facts of subnets] ************************************************************************************************
+ok: [localhost] => {
+    "msg": {
+        "SUB1-PUB-VPCA": "subnet-0e97183facf2d81e0",
+        "SUB2-PRI-VPCA": "subnet-0f4d069d6cb4cfb9f",
+        "SUB3-PRI-VPCA": "subnet-0c4bc2ad9da77b24c",
+        "SUB4-PRI-VPCB": "subnet-0f0d71068b9316212",
+        "SUB5-PUB-VPCA": "subnet-081c8280a148cafb9",
+        "SUB6-PUB-VPCB": "subnet-0435b28be96df93c0"
+    }
+}
+
+TASK [create webserver sec groups] ***********************************************************************************************
+changed: [localhost] => (item=[{'secgrpname': 'webinst-vpca'}, {'secgrpdesc': 'sec grp for web servers for vpca', 'secvpcid': 'vpc-0189dd71d9ff0b91b', 'secregion': 'ap-south-1'}])
+changed: [localhost] => (item=[{'secgrpname': 'webinst-vpcb'}, {'secgrpdesc': 'sec grp for web servers for vpcb', 'secvpcid': 'vpc-05715f6e510e2fc54', 'secregion': 'ap-south-1'}])
+
+TASK [set facts of webservers_group] *********************************************************************************************
+ok: [localhost] => (item={'changed': True, 'description': 'sec grp for web servers for vpca', 'group_name': 'webinst-vpca', 'ip_permissions': [{'from_port': 80, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '0.0.0.0/0'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 80, 'user_id_group_pairs': []}, {'from_port': 22, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '0.0.0.0/0'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 22, 'user_id_group_pairs': []}], 'owner_id': '802778636482', 'group_id': 'sg-0bc96d7e309b81b40', 'ip_permissions_egress': [{'ip_protocol': '-1', 'ip_ranges': [{'cidr_ip': '0.0.0.0/0'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'user_id_group_pairs': []}], 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'tags': {}, 'invocation': {'module_args': {'name': 'webinst-vpca', 'description': 'sec grp for web servers for vpca', 'region': 'ap-south-1', 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'rules': [{'proto': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_ip': '0.0.0.0/0'}, {'proto': 'tcp', 'from_port': 22, 'to_port': 22, 'cidr_ip': '0.0.0.0/0'}], 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'state': 'present', 'purge_rules': True, 'purge_rules_egress': True, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'group_id': None, 'rules_egress': None, 'tags': None}}, 'failed': False, 'item': [{'secgrpname': 'webinst-vpca'}, {'secgrpdesc': 'sec grp for web servers for vpca', 'secvpcid': 'vpc-0189dd71d9ff0b91b', 'secregion': 'ap-south-1'}], 'ansible_loop_var': 'item'})
+ok: [localhost] => (item={'changed': True, 'description': 'sec grp for web servers for vpcb', 'group_name': 'webinst-vpcb', 'ip_permissions': [{'from_port': 80, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '0.0.0.0/0'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 80, 'user_id_group_pairs': []}, {'from_port': 22, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '0.0.0.0/0'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 22, 'user_id_group_pairs': []}], 'owner_id': '802778636482', 'group_id': 'sg-04b61c7db5b0bc583', 'ip_permissions_egress': [{'ip_protocol': '-1', 'ip_ranges': [{'cidr_ip': '0.0.0.0/0'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'user_id_group_pairs': []}], 'vpc_id': 'vpc-05715f6e510e2fc54', 'tags': {}, 'invocation': {'module_args': {'name': 'webinst-vpcb', 'description': 'sec grp for web servers for vpcb', 'region': 'ap-south-1', 'vpc_id': 'vpc-05715f6e510e2fc54', 'rules': [{'proto': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_ip': '0.0.0.0/0'}, {'proto': 'tcp', 'from_port': 22, 'to_port': 22, 'cidr_ip': '0.0.0.0/0'}], 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'state': 'present', 'purge_rules': True, 'purge_rules_egress': True, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'group_id': None, 'rules_egress': None, 'tags': None}}, 'failed': False, 'item': [{'secgrpname': 'webinst-vpcb'}, {'secgrpdesc': 'sec grp for web servers for vpcb', 'secvpcid': 'vpc-05715f6e510e2fc54', 'secregion': 'ap-south-1'}], 'ansible_loop_var': 'item'})
+
+TASK [debugapsouth1_secgrps] *****************************************************************************************************
+ok: [localhost] => (item={'key': 'webinst-vpca', 'value': 'sg-0bc96d7e309b81b40'}) => {
+    "msg": "webinst-vpca : sg-0bc96d7e309b81b40"
+}
+ok: [localhost] => (item={'key': 'webinst-vpcb', 'value': 'sg-04b61c7db5b0bc583'}) => {
+    "msg": "webinst-vpcb : sg-04b61c7db5b0bc583"
+}
+
+TASK [copy var file all2.yaml to all3.yaml] **************************************************************************************
+changed: [localhost]
+
+TASK [replace subnet names with subnet id's in var file all3.yaml] ***************************************************************
+changed: [localhost] => (item={'key': 'SUB1-PUB-VPCA', 'value': 'subnet-0e97183facf2d81e0'})
+changed: [localhost] => (item={'key': 'SUB2-PRI-VPCA', 'value': 'subnet-0f4d069d6cb4cfb9f'})
+changed: [localhost] => (item={'key': 'SUB3-PRI-VPCA', 'value': 'subnet-0c4bc2ad9da77b24c'})
+changed: [localhost] => (item={'key': 'SUB4-PRI-VPCB', 'value': 'subnet-0f0d71068b9316212'})
+changed: [localhost] => (item={'key': 'SUB6-PUB-VPCB', 'value': 'subnet-0435b28be96df93c0'})
+changed: [localhost] => (item={'key': 'SUB5-PUB-VPCA', 'value': 'subnet-081c8280a148cafb9'})
+
+TASK [replace webserv sec grp names with sec grp ids in var file all3.yaml] ******************************************************
+changed: [localhost] => (item={'key': 'webinst-vpca', 'value': 'sg-0bc96d7e309b81b40'})
+changed: [localhost] => (item={'key': 'webinst-vpcb', 'value': 'sg-04b61c7db5b0bc583'})
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=11   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [localhost]
+
+TASK [create route table for public subnets and add IGW to route] ****************************************************************
+changed: [localhost] => (item=[{'routename': 'SUB1-PUBL-VPCA-IGW'}, {'igrvpc': 'vpc-0189dd71d9ff0b91b', 'igrregion': 'ap-south-1', 'igrsubnet': 'subnet-0e97183facf2d81e0', 'igrgatewayid': 'igw-060c18a08b574b8e4'}])
+changed: [localhost] => (item=[{'routename': 'SUB5-PUBL-VPCA-IGW'}, {'igrvpc': 'vpc-0189dd71d9ff0b91b', 'igrregion': 'ap-south-1', 'igrsubnet': 'subnet-081c8280a148cafb9', 'igrgatewayid': 'igw-060c18a08b574b8e4'}])
+changed: [localhost] => (item=[{'routename': 'SUB6-PUBL-VPCB-IGW'}, {'igrvpc': 'vpc-05715f6e510e2fc54', 'igrregion': 'ap-south-1', 'igrsubnet': 'subnet-0435b28be96df93c0', 'igrgatewayid': 'igw-0268dda0a73e1e6c1'}])
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [localhost]
+
+TASK [create network gateway for private subnet] *********************************************************************************
+changed: [localhost] => (item=[{'natgatewayname': 'SUB3-PRIV-VPCA-NATGW'}, {'ngsubnet': 'subnet-0e97183facf2d81e0', 'ngregion': 'ap-south-1'}])
+changed: [localhost] => (item=[{'natgatewayname': 'SUB4-PRIV-VPCB-NATGW'}, {'ngsubnet': 'subnet-0435b28be96df93c0', 'ngregion': 'ap-south-1'}])
+
+TASK [debug natgw] ***************************************************************************************************************
+ok: [localhost] => {
+    "msg": {
+        "changed": true,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "create_time": "2019-07-15T20:14:57+00:00",
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "allocation_id": null,
+                        "aws_access_key": null,
+                        "aws_secret_key": null,
+                        "client_token": null,
+                        "debug_botocore_endpoint_logs": false,
+                        "ec2_url": null,
+                        "eip_address": null,
+                        "if_exist_do_not_create": true,
+                        "nat_gateway_id": null,
+                        "profile": null,
+                        "region": "ap-south-1",
+                        "release_eip": false,
+                        "security_token": null,
+                        "state": "present",
+                        "subnet_id": "subnet-0e97183facf2d81e0",
+                        "validate_certs": true,
+                        "wait": true,
+                        "wait_timeout": 320
+                    }
+                },
+                "item": [
+                    {
+                        "natgatewayname": "SUB3-PRIV-VPCA-NATGW"
+                    },
+                    {
+                        "ngregion": "ap-south-1",
+                        "ngsubnet": "subnet-0e97183facf2d81e0"
+                    }
+                ],
+                "msg": "NAT gateway nat-0311821a7a8323457 created",
+                "nat_gateway_addresses": [
+                    {
+                        "allocation_id": "eipalloc-081601526bd163971",
+                        "network_interface_id": "eni-08fc4e704370d1abd",
+                        "private_ip": "10.0.5.107",
+                        "public_ip": "13.126.53.62"
+                    }
+                ],
+                "nat_gateway_id": "nat-0311821a7a8323457",
+                "state": "available",
+                "subnet_id": "subnet-0e97183facf2d81e0",
+                "success": true,
+                "tags": [],
+                "vpc_id": "vpc-0189dd71d9ff0b91b"
+            },
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "create_time": "2019-07-15T20:16:38+00:00",
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "allocation_id": null,
+                        "aws_access_key": null,
+                        "aws_secret_key": null,
+                        "client_token": null,
+                        "debug_botocore_endpoint_logs": false,
+                        "ec2_url": null,
+                        "eip_address": null,
+                        "if_exist_do_not_create": true,
+                        "nat_gateway_id": null,
+                        "profile": null,
+                        "region": "ap-south-1",
+                        "release_eip": false,
+                        "security_token": null,
+                        "state": "present",
+                        "subnet_id": "subnet-0435b28be96df93c0",
+                        "validate_certs": true,
+                        "wait": true,
+                        "wait_timeout": 320
+                    }
+                },
+                "item": [
+                    {
+                        "natgatewayname": "SUB4-PRIV-VPCB-NATGW"
+                    },
+                    {
+                        "ngregion": "ap-south-1",
+                        "ngsubnet": "subnet-0435b28be96df93c0"
+                    }
+                ],
+                "msg": "NAT gateway nat-0c8092977a154c804 created",
+                "nat_gateway_addresses": [
+                    {
+                        "allocation_id": "eipalloc-09c44983e3080d773",
+                        "network_interface_id": "eni-0a011bc8b807bb586",
+                        "private_ip": "10.1.9.12",
+                        "public_ip": "13.234.168.201"
+                    }
+                ],
+                "nat_gateway_id": "nat-0c8092977a154c804",
+                "state": "available",
+                "subnet_id": "subnet-0435b28be96df93c0",
+                "success": true,
+                "tags": [],
+                "vpc_id": "vpc-05715f6e510e2fc54"
+            }
+        ]
+    }
+}
+
+TASK [setfacts natworkgwid] ******************************************************************************************************
+ok: [localhost] => (item={'msg': 'NAT gateway nat-0311821a7a8323457 created', 'success': True, 'changed': True, 'create_time': '2019-07-15T20:14:57+00:00', 'nat_gateway_addresses': [{'allocation_id': 'eipalloc-081601526bd163971', 'network_interface_id': 'eni-08fc4e704370d1abd', 'private_ip': '10.0.5.107', 'public_ip': '13.126.53.62'}], 'nat_gateway_id': 'nat-0311821a7a8323457', 'state': 'available', 'subnet_id': 'subnet-0e97183facf2d81e0', 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'tags': [], 'invocation': {'module_args': {'subnet_id': 'subnet-0e97183facf2d81e0', 'region': 'ap-south-1', 'wait': True, 'if_exist_do_not_create': True, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'state': 'present', 'wait_timeout': 320, 'release_eip': False, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'eip_address': None, 'allocation_id': None, 'nat_gateway_id': None, 'client_token': None}}, 'failed': False, 'item': [{'natgatewayname': 'SUB3-PRIV-VPCA-NATGW'}, {'ngsubnet': 'subnet-0e97183facf2d81e0', 'ngregion': 'ap-south-1'}], 'ansible_loop_var': 'item'})
+ok: [localhost] => (item={'msg': 'NAT gateway nat-0c8092977a154c804 created', 'success': True, 'changed': True, 'create_time': '2019-07-15T20:16:38+00:00', 'nat_gateway_addresses': [{'allocation_id': 'eipalloc-09c44983e3080d773', 'network_interface_id': 'eni-0a011bc8b807bb586', 'private_ip': '10.1.9.12', 'public_ip': '13.234.168.201'}], 'nat_gateway_id': 'nat-0c8092977a154c804', 'state': 'available', 'subnet_id': 'subnet-0435b28be96df93c0', 'vpc_id': 'vpc-05715f6e510e2fc54', 'tags': [], 'invocation': {'module_args': {'subnet_id': 'subnet-0435b28be96df93c0', 'region': 'ap-south-1', 'wait': True, 'if_exist_do_not_create': True, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'state': 'present', 'wait_timeout': 320, 'release_eip': False, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'eip_address': None, 'allocation_id': None, 'nat_gateway_id': None, 'client_token': None}}, 'failed': False, 'item': [{'natgatewayname': 'SUB4-PRIV-VPCB-NATGW'}, {'ngsubnet': 'subnet-0435b28be96df93c0', 'ngregion': 'ap-south-1'}], 'ansible_loop_var': 'item'})
+
+TASK [replace NGW name with NGW id] **********************************************************************************************
+changed: [localhost] => (item={'key': 'SUB3-PRIV-VPCA-NATGW', 'value': 'nat-0311821a7a8323457'})
+changed: [localhost] => (item={'key': 'SUB4-PRIV-VPCB-NATGW', 'value': 'nat-0c8092977a154c804'})
+
+TASK [get mainroutes id to given vpcid] ******************************************************************************************
+ok: [localhost] => (item=[{'routename': 'SUB3-PRI-VPC--A-NATROUTE'}, {'ngrvpc': 'vpc-0189dd71d9ff0b91b', 'ngrvpccidr': '10.0.0.0/16', 'ngrregion': 'ap-south-1', 'ngrsubnet': 'subnet-0c4bc2ad9da77b24c', 'ngrgatewayid': 'SUB3-PRIV-VPCA-NATGW', 'ngrrouteid': 'SUB3-PRI-VPC--A-NATROUTE'}])
+ok: [localhost] => (item=[{'routename': 'SUB4-PRI-VPC--B-NATROUTE'}, {'ngrvpc': 'vpc-05715f6e510e2fc54', 'ngrvpccidr': '10.1.0.0/16', 'ngrregion': 'ap-south-1', 'ngrsubnet': 'subnet-0f0d71068b9316212', 'ngrgatewayid': 'SUB4-PRIV-VPCB-NATGW', 'ngrrouteid': 'SUB4-PRI-VPC--B-NATROUTE'}])
+
+TASK [debug main_route] **********************************************************************************************************
+ok: [localhost] => {
+    "msg": {
+        "changed": false,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "aws_access_key": null,
+                        "aws_secret_key": null,
+                        "debug_botocore_endpoint_logs": false,
+                        "ec2_url": null,
+                        "filters": {
+                            "association.main": "true",
+                            "vpc-id": "vpc-0189dd71d9ff0b91b"
+                        },
+                        "profile": null,
+                        "region": "ap-south-1",
+                        "security_token": null,
+                        "validate_certs": true
+                    }
+                },
+                "item": [
+                    {
+                        "routename": "SUB3-PRI-VPC--A-NATROUTE"
+                    },
+                    {
+                        "ngrgatewayid": "SUB3-PRIV-VPCA-NATGW",
+                        "ngrregion": "ap-south-1",
+                        "ngrrouteid": "SUB3-PRI-VPC--A-NATROUTE",
+                        "ngrsubnet": "subnet-0c4bc2ad9da77b24c",
+                        "ngrvpc": "vpc-0189dd71d9ff0b91b",
+                        "ngrvpccidr": "10.0.0.0/16"
+                    }
+                ],
+                "route_tables": [
+                    {
+                        "associations": [
+                            {
+                                "id": "rtbassoc-0a8593de3de8bd8bf",
+                                "main": true,
+                                "route_table_id": "rtb-0b8a8512b6877eacf",
+                                "subnet_id": null
+                            }
+                        ],
+                        "id": "rtb-0b8a8512b6877eacf",
+                        "routes": [
+                            {
+                                "destination_cidr_block": "10.0.0.0/16",
+                                "gateway_id": "local",
+                                "instance_id": null,
+                                "interface_id": null,
+                                "origin": "CreateRouteTable",
+                                "state": "active",
+                                "vpc_peering_connection_id": null
+                            }
+                        ],
+                        "tags": {},
+                        "vpc_id": "vpc-0189dd71d9ff0b91b"
+                    }
+                ]
+            },
+            {
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "aws_access_key": null,
+                        "aws_secret_key": null,
+                        "debug_botocore_endpoint_logs": false,
+                        "ec2_url": null,
+                        "filters": {
+                            "association.main": "true",
+                            "vpc-id": "vpc-05715f6e510e2fc54"
+                        },
+                        "profile": null,
+                        "region": "ap-south-1",
+                        "security_token": null,
+                        "validate_certs": true
+                    }
+                },
+                "item": [
+                    {
+                        "routename": "SUB4-PRI-VPC--B-NATROUTE"
+                    },
+                    {
+                        "ngrgatewayid": "SUB4-PRIV-VPCB-NATGW",
+                        "ngrregion": "ap-south-1",
+                        "ngrrouteid": "SUB4-PRI-VPC--B-NATROUTE",
+                        "ngrsubnet": "subnet-0f0d71068b9316212",
+                        "ngrvpc": "vpc-05715f6e510e2fc54",
+                        "ngrvpccidr": "10.1.0.0/16"
+                    }
+                ],
+                "route_tables": [
+                    {
+                        "associations": [
+                            {
+                                "id": "rtbassoc-020d46891c9c082b5",
+                                "main": true,
+                                "route_table_id": "rtb-02ffc901b18c77929",
+                                "subnet_id": null
+                            }
+                        ],
+                        "id": "rtb-02ffc901b18c77929",
+                        "routes": [
+                            {
+                                "destination_cidr_block": "10.1.0.0/16",
+                                "gateway_id": "local",
+                                "instance_id": null,
+                                "interface_id": null,
+                                "origin": "CreateRouteTable",
+                                "state": "active",
+                                "vpc_peering_connection_id": null
+                            }
+                        ],
+                        "tags": {},
+                        "vpc_id": "vpc-05715f6e510e2fc54"
+                    }
+                ]
+            }
+        ]
+    }
+}
+
+TASK [setfacts to main_route] ****************************************************************************************************
+ok: [localhost] => (item={'route_tables': [{'id': 'rtb-0b8a8512b6877eacf', 'routes': [{'destination_cidr_block': '10.0.0.0/16', 'gateway_id': 'local', 'instance_id': None, 'interface_id': None, 'vpc_peering_connection_id': None, 'state': 'active', 'origin': 'CreateRouteTable'}], 'associations': [{'id': 'rtbassoc-0a8593de3de8bd8bf', 'route_table_id': 'rtb-0b8a8512b6877eacf', 'subnet_id': None, 'main': True}], 'tags': {}, 'vpc_id': 'vpc-0189dd71d9ff0b91b'}], 'invocation': {'module_args': {'region': 'ap-south-1', 'filters': {'vpc-id': 'vpc-0189dd71d9ff0b91b', 'association.main': 'true'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'changed': False, 'item': [{'routename': 'SUB3-PRI-VPC--A-NATROUTE'}, {'ngrvpc': 'vpc-0189dd71d9ff0b91b', 'ngrvpccidr': '10.0.0.0/16', 'ngrregion': 'ap-south-1', 'ngrsubnet': 'subnet-0c4bc2ad9da77b24c', 'ngrgatewayid': 'SUB3-PRIV-VPCA-NATGW', 'ngrrouteid': 'SUB3-PRI-VPC--A-NATROUTE'}], 'ansible_loop_var': 'item'})
+ok: [localhost] => (item={'route_tables': [{'id': 'rtb-02ffc901b18c77929', 'routes': [{'destination_cidr_block': '10.1.0.0/16', 'gateway_id': 'local', 'instance_id': None, 'interface_id': None, 'vpc_peering_connection_id': None, 'state': 'active', 'origin': 'CreateRouteTable'}], 'associations': [{'id': 'rtbassoc-020d46891c9c082b5', 'route_table_id': 'rtb-02ffc901b18c77929', 'subnet_id': None, 'main': True}], 'tags': {}, 'vpc_id': 'vpc-05715f6e510e2fc54'}], 'invocation': {'module_args': {'region': 'ap-south-1', 'filters': {'vpc-id': 'vpc-05715f6e510e2fc54', 'association.main': 'true'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'changed': False, 'item': [{'routename': 'SUB4-PRI-VPC--B-NATROUTE'}, {'ngrvpc': 'vpc-05715f6e510e2fc54', 'ngrvpccidr': '10.1.0.0/16', 'ngrregion': 'ap-south-1', 'ngrsubnet': 'subnet-0f0d71068b9316212', 'ngrgatewayid': 'SUB4-PRIV-VPCB-NATGW', 'ngrrouteid': 'SUB4-PRI-VPC--B-NATROUTE'}], 'ansible_loop_var': 'item'})
+
+TASK [copy all3 to all4] *********************************************************************************************************
+changed: [localhost]
+
+TASK [replace natgateway names with nat gateway ids with VPC-ids] ****************************************************************
+changed: [localhost] => (item={'key': 'SUB3-PRI-VPC--A-NATROUTE', 'value': 'rtb-0b8a8512b6877eacf'})
+changed: [localhost] => (item={'key': 'SUB4-PRI-VPC--B-NATROUTE', 'value': 'rtb-02ffc901b18c77929'})
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=10   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [localhost]
+
+TASK [create instances] **********************************************************************************************************
+changed: [localhost] => (item=[{'instname': 'INST1-SUBPUB1-VPCA'}, {'inskeyname': 'myprimeadmkeypair', 'instype': 't2.micro', 'insimage': 'ami-0a74bfeb190bd404f', 'insregion': 'ap-south-1', 'inssecgrp': 'sg-0bc96d7e309b81b40', 'instags': 'INSTANCESUBPUB1VPCA-INST1-SUBPUB1-VPCA', 'inspubiptag': 'INST1SUBPUB1VPCAPUBLICIP', 'inspriiptag': 'INST1SUBPUB1VPCAPRIVATEIP', 'inscount': 1, 'insvpcsubnetid': 'subnet-0e97183facf2d81e0', 'insasspubip': True}])
+changed: [localhost] => (item=[{'instname': 'INST2-SUBPUB5-VPCA'}, {'inskeyname': 'myprimeadmkeypair', 'instype': 't2.micro', 'insimage': 'ami-0a74bfeb190bd404f', 'insregion': 'ap-south-1', 'inssecgrp': 'sg-0bc96d7e309b81b40', 'instags': 'INSTANCESUBPUB1VPCA-INST2-SUBPUB5-VPCA', 'inspubiptag': 'INST2SUBPUB1VPCAPUBLICIP', 'inspriiptag': 'INST2SUBPUB1VPCAPRIVATEIP', 'inscount': 1, 'insvpcsubnetid': 'subnet-081c8280a148cafb9', 'insasspubip': True}])
+
+TASK [debug] *********************************************************************************************************************
+ok: [localhost] => {
+    "msg": {
+        "changed": true,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "failed": false,
+                "instance_ids": [
+                    "i-069b673e96b5759be"
+                ],
+                "instances": [
+                    {
+                        "ami_launch_index": "0",
+                        "architecture": "x86_64",
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true,
+                                "status": "attached",
+                                "volume_id": "vol-023a24d9f1d59e3ec"
+                            }
+                        },
+                        "dns_name": "ec2-13-234-225-203.ap-south-1.compute.amazonaws.com",
+                        "ebs_optimized": false,
+                        "groups": {
+                            "sg-0bc96d7e309b81b40": "webinst-vpca"
+                        },
+                        "hypervisor": "xen",
+                        "id": "i-069b673e96b5759be",
+                        "image_id": "ami-0a74bfeb190bd404f",
+                        "instance_type": "t2.micro",
+                        "kernel": null,
+                        "key_name": "myprimeadmkeypair",
+                        "launch_time": "2019-07-15T20:21:14.000Z",
+                        "placement": "ap-south-1a",
+                        "private_dns_name": "ip-10-0-5-170.ap-south-1.compute.internal",
+                        "private_ip": "10.0.5.170",
+                        "public_dns_name": "ec2-13-234-225-203.ap-south-1.compute.amazonaws.com",
+                        "public_ip": "13.234.225.203",
+                        "ramdisk": null,
+                        "region": "ap-south-1",
+                        "root_device_name": "/dev/sda1",
+                        "root_device_type": "ebs",
+                        "state": "running",
+                        "state_code": 16,
+                        "tags": {
+                            "Name": "INST1-SUBPUB1-VPCA",
+                            "Privateip": "INST1SUBPUB1VPCAPRIVATEIP",
+                            "Publicip": "INST1SUBPUB1VPCAPUBLICIP"
+                        },
+                        "tenancy": "default",
+                        "virtualization_type": "hvm"
+                    }
+                ],
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": null,
+                        "aws_access_key": null,
+                        "aws_secret_key": null,
+                        "count": 1,
+                        "count_tag": {
+                            "application": "webservers"
+                        },
+                        "debug_botocore_endpoint_logs": false,
+                        "ebs_optimized": false,
+                        "ec2_url": null,
+                        "exact_count": null,
+                        "group": null,
+                        "group_id": [
+                            "sg-0bc96d7e309b81b40"
+                        ],
+                        "id": null,
+                        "image": "ami-0a74bfeb190bd404f",
+                        "instance_ids": null,
+                        "instance_initiated_shutdown_behavior": "stop",
+                        "instance_profile_name": null,
+                        "instance_tags": {
+                            "Name": "INST1-SUBPUB1-VPCA",
+                            "Privateip": "INST1SUBPUB1VPCAPRIVATEIP",
+                            "Publicip": "INST1SUBPUB1VPCAPUBLICIP"
+                        },
+                        "instance_type": "t2.micro",
+                        "kernel": null,
+                        "key_name": "myprimeadmkeypair",
+                        "monitoring": false,
+                        "network_interfaces": null,
+                        "placement_group": null,
+                        "private_ip": null,
+                        "profile": null,
+                        "ramdisk": null,
+                        "region": "ap-south-1",
+                        "security_token": null,
+                        "source_dest_check": null,
+                        "spot_launch_group": null,
+                        "spot_price": null,
+                        "spot_type": "one-time",
+                        "spot_wait_timeout": 600,
+                        "state": "present",
+                        "tenancy": "default",
+                        "termination_protection": null,
+                        "user_data": null,
+                        "validate_certs": true,
+                        "volumes": null,
+                        "vpc_subnet_id": "subnet-0e97183facf2d81e0",
+                        "wait": true,
+                        "wait_timeout": 300,
+                        "zone": null
+                    }
+                },
+                "item": [
+                    {
+                        "instname": "INST1-SUBPUB1-VPCA"
+                    },
+                    {
+                        "insasspubip": true,
+                        "inscount": 1,
+                        "insimage": "ami-0a74bfeb190bd404f",
+                        "inskeyname": "myprimeadmkeypair",
+                        "inspriiptag": "INST1SUBPUB1VPCAPRIVATEIP",
+                        "inspubiptag": "INST1SUBPUB1VPCAPUBLICIP",
+                        "insregion": "ap-south-1",
+                        "inssecgrp": "sg-0bc96d7e309b81b40",
+                        "instags": "INSTANCESUBPUB1VPCA-INST1-SUBPUB1-VPCA",
+                        "instype": "t2.micro",
+                        "insvpcsubnetid": "subnet-0e97183facf2d81e0"
+                    }
+                ],
+                "tagged_instances": []
+            },
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "failed": false,
+                "instance_ids": [
+                    "i-0c1bd2ca9e086a24e"
+                ],
+                "instances": [
+                    {
+                        "ami_launch_index": "0",
+                        "architecture": "x86_64",
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true,
+                                "status": "attached",
+                                "volume_id": "vol-079a0b7f2565bd1b6"
+                            }
+                        },
+                        "dns_name": "ec2-13-233-121-75.ap-south-1.compute.amazonaws.com",
+                        "ebs_optimized": false,
+                        "groups": {
+                            "sg-0bc96d7e309b81b40": "webinst-vpca"
+                        },
+                        "hypervisor": "xen",
+                        "id": "i-0c1bd2ca9e086a24e",
+                        "image_id": "ami-0a74bfeb190bd404f",
+                        "instance_type": "t2.micro",
+                        "kernel": null,
+                        "key_name": "myprimeadmkeypair",
+                        "launch_time": "2019-07-15T20:21:41.000Z",
+                        "placement": "ap-south-1b",
+                        "private_dns_name": "ip-10-0-10-250.ap-south-1.compute.internal",
+                        "private_ip": "10.0.10.250",
+                        "public_dns_name": "ec2-13-233-121-75.ap-south-1.compute.amazonaws.com",
+                        "public_ip": "13.233.121.75",
+                        "ramdisk": null,
+                        "region": "ap-south-1",
+                        "root_device_name": "/dev/sda1",
+                        "root_device_type": "ebs",
+                        "state": "running",
+                        "state_code": 16,
+                        "tags": {
+                            "Name": "INST2-SUBPUB5-VPCA",
+                            "Privateip": "INST2SUBPUB1VPCAPRIVATEIP",
+                            "Publicip": "INST2SUBPUB1VPCAPUBLICIP"
+                        },
+                        "tenancy": "default",
+                        "virtualization_type": "hvm"
+                    }
+                ],
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": null,
+                        "aws_access_key": null,
+                        "aws_secret_key": null,
+                        "count": 1,
+                        "count_tag": {
+                            "application": "webservers"
+                        },
+                        "debug_botocore_endpoint_logs": false,
+                        "ebs_optimized": false,
+                        "ec2_url": null,
+                        "exact_count": null,
+                        "group": null,
+                        "group_id": [
+                            "sg-0bc96d7e309b81b40"
+                        ],
+                        "id": null,
+                        "image": "ami-0a74bfeb190bd404f",
+                        "instance_ids": null,
+                        "instance_initiated_shutdown_behavior": "stop",
+                        "instance_profile_name": null,
+                        "instance_tags": {
+                            "Name": "INST2-SUBPUB5-VPCA",
+                            "Privateip": "INST2SUBPUB1VPCAPRIVATEIP",
+                            "Publicip": "INST2SUBPUB1VPCAPUBLICIP"
+                        },
+                        "instance_type": "t2.micro",
+                        "kernel": null,
+                        "key_name": "myprimeadmkeypair",
+                        "monitoring": false,
+                        "network_interfaces": null,
+                        "placement_group": null,
+                        "private_ip": null,
+                        "profile": null,
+                        "ramdisk": null,
+                        "region": "ap-south-1",
+                        "security_token": null,
+                        "source_dest_check": null,
+                        "spot_launch_group": null,
+                        "spot_price": null,
+                        "spot_type": "one-time",
+                        "spot_wait_timeout": 600,
+                        "state": "present",
+                        "tenancy": "default",
+                        "termination_protection": null,
+                        "user_data": null,
+                        "validate_certs": true,
+                        "volumes": null,
+                        "vpc_subnet_id": "subnet-081c8280a148cafb9",
+                        "wait": true,
+                        "wait_timeout": 300,
+                        "zone": null
+                    }
+                },
+                "item": [
+                    {
+                        "instname": "INST2-SUBPUB5-VPCA"
+                    },
+                    {
+                        "insasspubip": true,
+                        "inscount": 1,
+                        "insimage": "ami-0a74bfeb190bd404f",
+                        "inskeyname": "myprimeadmkeypair",
+                        "inspriiptag": "INST2SUBPUB1VPCAPRIVATEIP",
+                        "inspubiptag": "INST2SUBPUB1VPCAPUBLICIP",
+                        "insregion": "ap-south-1",
+                        "inssecgrp": "sg-0bc96d7e309b81b40",
+                        "instags": "INSTANCESUBPUB1VPCA-INST2-SUBPUB5-VPCA",
+                        "instype": "t2.micro",
+                        "insvpcsubnetid": "subnet-081c8280a148cafb9"
+                    }
+                ],
+                "tagged_instances": []
+            }
+        ]
+    }
+}
+
+TASK [setfactsget public ipaddresses of instances into dict] *********************************************************************
+ok: [localhost] => (item={'changed': True, 'instance_ids': ['i-069b673e96b5759be'], 'instances': [{'id': 'i-069b673e96b5759be', 'ami_launch_index': '0', 'private_ip': '10.0.5.170', 'private_dns_name': 'ip-10-0-5-170.ap-south-1.compute.internal', 'public_ip': '13.234.225.203', 'dns_name': 'ec2-13-234-225-203.ap-south-1.compute.amazonaws.com', 'public_dns_name': 'ec2-13-234-225-203.ap-south-1.compute.amazonaws.com', 'state_code': 16, 'architecture': 'x86_64', 'image_id': 'ami-0a74bfeb190bd404f', 'key_name': 'myprimeadmkeypair', 'placement': 'ap-south-1a', 'region': 'ap-south-1', 'kernel': None, 'ramdisk': None, 'launch_time': '2019-07-15T20:21:14.000Z', 'instance_type': 't2.micro', 'root_device_type': 'ebs', 'root_device_name': '/dev/sda1', 'state': 'running', 'hypervisor': 'xen', 'tags': {'Privateip': 'INST1SUBPUB1VPCAPRIVATEIP', 'Publicip': 'INST1SUBPUB1VPCAPUBLICIP', 'Name': 'INST1-SUBPUB1-VPCA'}, 'groups': {'sg-0bc96d7e309b81b40': 'webinst-vpca'}, 'virtualization_type': 'hvm', 'ebs_optimized': False, 'block_device_mapping': {'/dev/sda1': {'status': 'attached', 'volume_id': 'vol-023a24d9f1d59e3ec', 'delete_on_termination': True}}, 'tenancy': 'default'}], 'tagged_instances': [], 'invocation': {'module_args': {'key_name': 'myprimeadmkeypair', 'instance_type': 't2.micro', 'image': 'ami-0a74bfeb190bd404f', 'region': 'ap-south-1', 'group_id': ['sg-0bc96d7e309b81b40'], 'wait': True, 'instance_tags': {'Name': 'INST1-SUBPUB1-VPCA', 'Publicip': 'INST1SUBPUB1VPCAPUBLICIP', 'Privateip': 'INST1SUBPUB1VPCAPRIVATEIP'}, 'count': 1, 'count_tag': {'application': 'webservers'}, 'vpc_subnet_id': 'subnet-0e97183facf2d81e0', 'state': 'present', 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'spot_type': 'one-time', 'monitoring': False, 'wait_timeout': 300, 'spot_wait_timeout': 600, 'instance_initiated_shutdown_behavior': 'stop', 'ebs_optimized': False, 'tenancy': 'default', 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'id': None, 'group': None, 'zone': None, 'spot_price': None, 'spot_launch_group': None, 'kernel': None, 'ramdisk': None, 'placement_group': None, 'user_data': None, 'assign_public_ip': None, 'private_ip': None, 'instance_profile_name': None, 'instance_ids': None, 'source_dest_check': None, 'termination_protection': None, 'exact_count': None, 'volumes': None, 'network_interfaces': None}}, 'failed': False, 'item': [{'instname': 'INST1-SUBPUB1-VPCA'}, {'inskeyname': 'myprimeadmkeypair', 'instype': 't2.micro', 'insimage': 'ami-0a74bfeb190bd404f', 'insregion': 'ap-south-1', 'inssecgrp': 'sg-0bc96d7e309b81b40', 'instags': 'INSTANCESUBPUB1VPCA-INST1-SUBPUB1-VPCA', 'inspubiptag': 'INST1SUBPUB1VPCAPUBLICIP', 'inspriiptag': 'INST1SUBPUB1VPCAPRIVATEIP', 'inscount': 1, 'insvpcsubnetid': 'subnet-0e97183facf2d81e0', 'insasspubip': True}], 'ansible_loop_var': 'item'})
+ok: [localhost] => (item={'changed': True, 'instance_ids': ['i-0c1bd2ca9e086a24e'], 'instances': [{'id': 'i-0c1bd2ca9e086a24e', 'ami_launch_index': '0', 'private_ip': '10.0.10.250', 'private_dns_name': 'ip-10-0-10-250.ap-south-1.compute.internal', 'public_ip': '13.233.121.75', 'dns_name': 'ec2-13-233-121-75.ap-south-1.compute.amazonaws.com', 'public_dns_name': 'ec2-13-233-121-75.ap-south-1.compute.amazonaws.com', 'state_code': 16, 'architecture': 'x86_64', 'image_id': 'ami-0a74bfeb190bd404f', 'key_name': 'myprimeadmkeypair', 'placement': 'ap-south-1b', 'region': 'ap-south-1', 'kernel': None, 'ramdisk': None, 'launch_time': '2019-07-15T20:21:41.000Z', 'instance_type': 't2.micro', 'root_device_type': 'ebs', 'root_device_name': '/dev/sda1', 'state': 'running', 'hypervisor': 'xen', 'tags': {'Name': 'INST2-SUBPUB5-VPCA', 'Privateip': 'INST2SUBPUB1VPCAPRIVATEIP', 'Publicip': 'INST2SUBPUB1VPCAPUBLICIP'}, 'groups': {'sg-0bc96d7e309b81b40': 'webinst-vpca'}, 'virtualization_type': 'hvm', 'ebs_optimized': False, 'block_device_mapping': {'/dev/sda1': {'status': 'attached', 'volume_id': 'vol-079a0b7f2565bd1b6', 'delete_on_termination': True}}, 'tenancy': 'default'}], 'tagged_instances': [], 'invocation': {'module_args': {'key_name': 'myprimeadmkeypair', 'instance_type': 't2.micro', 'image': 'ami-0a74bfeb190bd404f', 'region': 'ap-south-1', 'group_id': ['sg-0bc96d7e309b81b40'], 'wait': True, 'instance_tags': {'Name': 'INST2-SUBPUB5-VPCA', 'Publicip': 'INST2SUBPUB1VPCAPUBLICIP', 'Privateip': 'INST2SUBPUB1VPCAPRIVATEIP'}, 'count': 1, 'count_tag': {'application': 'webservers'}, 'vpc_subnet_id': 'subnet-081c8280a148cafb9', 'state': 'present', 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'spot_type': 'one-time', 'monitoring': False, 'wait_timeout': 300, 'spot_wait_timeout': 600, 'instance_initiated_shutdown_behavior': 'stop', 'ebs_optimized': False, 'tenancy': 'default', 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'id': None, 'group': None, 'zone': None, 'spot_price': None, 'spot_launch_group': None, 'kernel': None, 'ramdisk': None, 'placement_group': None, 'user_data': None, 'assign_public_ip': None, 'private_ip': None, 'instance_profile_name': None, 'instance_ids': None, 'source_dest_check': None, 'termination_protection': None, 'exact_count': None, 'volumes': None, 'network_interfaces': None}}, 'failed': False, 'item': [{'instname': 'INST2-SUBPUB5-VPCA'}, {'inskeyname': 'myprimeadmkeypair', 'instype': 't2.micro', 'insimage': 'ami-0a74bfeb190bd404f', 'insregion': 'ap-south-1', 'inssecgrp': 'sg-0bc96d7e309b81b40', 'instags': 'INSTANCESUBPUB1VPCA-INST2-SUBPUB5-VPCA', 'inspubiptag': 'INST2SUBPUB1VPCAPUBLICIP', 'inspriiptag': 'INST2SUBPUB1VPCAPRIVATEIP', 'inscount': 1, 'insvpcsubnetid': 'subnet-081c8280a148cafb9', 'insasspubip': True}], 'ansible_loop_var': 'item'})
+
+TASK [debug pubsubs_vpca_instances] **********************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        {
+            "INST1-SUBPUB1-VPCA": [
+                "i-069b673e96b5759be"
+            ],
+            "INST2-SUBPUB5-VPCA": [
+                "i-0c1bd2ca9e086a24e"
+            ]
+        },
+        {
+            "INST1SUBPUB1VPCAPUBLICIP": "13.234.225.203",
+            "INST2SUBPUB1VPCAPUBLICIP": "13.233.121.75"
+        },
+        {
+            "INST1SUBPUB1VPCAPRIVATEIP": "10.0.5.170",
+            "INST2SUBPUB1VPCAPRIVATEIP": "10.0.10.250"
+        }
+    ]
+}
+
+TASK [copy all4yaml to all5yaml] *************************************************************************************************
+changed: [localhost]
+
+TASK [replace the keys and values from loops] ************************************************************************************
+changed: [localhost] => (item={'key': 'INST1SUBPUB1VPCAPUBLICIP', 'value': '13.234.225.203'})
+changed: [localhost] => (item={'key': 'INST2SUBPUB1VPCAPUBLICIP', 'value': '13.233.121.75'})
+changed: [localhost] => (item={'key': 'INST1SUBPUB1VPCAPRIVATEIP', 'value': '10.0.5.170'})
+changed: [localhost] => (item={'key': 'INST2SUBPUB1VPCAPRIVATEIP', 'value': '10.0.10.250'})
+
+TASK [replace the keys and values from loops] ************************************************************************************
+changed: [localhost] => (item={'key': 'INST1-SUBPUB1-VPCA', 'value': ['i-069b673e96b5759be']})
+changed: [localhost] => (item={'key': 'INST2-SUBPUB5-VPCA', 'value': ['i-0c1bd2ca9e086a24e']})
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=8    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [localhost]
+
+TASK [create appserver sec groups] ***********************************************************************************************
+changed: [localhost] => (item=[{'secgrpname': 'appinst-vpca'}, {'secgrpdesc': 'sec grp for app servers for vpca', 'secvpcid': 'vpc-0189dd71d9ff0b91b', 'secregion': 'ap-south-1', 'sectarget1': '10.0.5.0/24', 'sectarget2': '10.0.10.0/24'}])
+
+TASK [set facts of appservers_group] *********************************************************************************************
+ok: [localhost] => (item={'changed': True, 'description': 'sec grp for app servers for vpca', 'group_name': 'appinst-vpca', 'ip_permissions': [{'from_port': 80, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '10.0.5.0/24'}, {'cidr_ip': '10.0.10.0/24'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 80, 'user_id_group_pairs': []}, {'from_port': 22, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '10.0.10.0/24'}, {'cidr_ip': '10.0.5.0/24'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 22, 'user_id_group_pairs': []}], 'owner_id': '802778636482', 'group_id': 'sg-0a5074f7ba955c9a5', 'ip_permissions_egress': [{'from_port': 80, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '10.0.5.0/24'}, {'cidr_ip': '10.0.10.0/24'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 80, 'user_id_group_pairs': []}], 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'tags': {}, 'invocation': {'module_args': {'name': 'appinst-vpca', 'description': 'sec grp for app servers for vpca', 'region': 'ap-south-1', 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'rules': [{'proto': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_ip': '10.0.5.0/24'}, {'proto': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_ip': '10.0.10.0/24'}, {'proto': 'tcp', 'from_port': 22, 'to_port': 22, 'cidr_ip': '10.0.5.0/24'}, {'proto': 'tcp', 'from_port': 22, 'to_port': 22, 'cidr_ip': '10.0.10.0/24'}], 'rules_egress': [{'proto': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_ip': '10.0.5.0/24'}, {'proto': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_ip': '10.0.10.0/24'}], 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'state': 'present', 'purge_rules': True, 'purge_rules_egress': True, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'group_id': None, 'tags': None}}, 'failed': False, 'item': [{'secgrpname': 'appinst-vpca'}, {'secgrpdesc': 'sec grp for app servers for vpca', 'secvpcid': 'vpc-0189dd71d9ff0b91b', 'secregion': 'ap-south-1', 'sectarget1': '10.0.5.0/24', 'sectarget2': '10.0.10.0/24'}], 'ansible_loop_var': 'item'})
+
+TASK [debugapsouth1_appsecgrps] **************************************************************************************************
+ok: [localhost] => (item={'key': 'appinst-vpca', 'value': 'sg-0a5074f7ba955c9a5'}) => {
+    "msg": "appinst-vpca : sg-0a5074f7ba955c9a5"
+}
+
+TASK [copy var file all5.yaml to all6.yaml] **************************************************************************************
+changed: [localhost]
+
+TASK [replace appebserv sec grp names with sec grp ids in var file all6.yaml] ****************************************************
+changed: [localhost] => (item={'key': 'appinst-vpca', 'value': 'sg-0a5074f7ba955c9a5'})
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [localhost]
+
+TASK [create instances for app servers] ******************************************************************************************
+changed: [localhost] => (item=[{'instname': 'INST3-SUBPRI2-VPCA'}, {'inskeyname': 'myprimeadmkeypair', 'instype': 't2.micro', 'insimage': 'ami-0a74bfeb190bd404f', 'insregion': 'ap-south-1', 'inssecgrp': 'sg-0a5074f7ba955c9a5', 'instags': 'INSTANCESUBPRI2VPCA-INST2-SUBPRI2-VPCA', 'inspubiptag': 'INST3SUBPRI2VPCAPUBLICIP', 'inspriiptag': 'INST3SUBPRI2VPCAPRIVATEIP', 'inscount': 1, 'insvpcsubnetid': 'subnet-0f4d069d6cb4cfb9f', 'insasspubip': False}])
+
+TASK [debug] *********************************************************************************************************************
+ok: [localhost] => {
+    "msg": {
+        "changed": true,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "failed": false,
+                "instance_ids": [
+                    "i-07641a2e4a4b9f71b"
+                ],
+                "instances": [
+                    {
+                        "ami_launch_index": "0",
+                        "architecture": "x86_64",
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true,
+                                "status": "attached",
+                                "volume_id": "vol-05cf9b71ac07b8ada"
+                            }
+                        },
+                        "dns_name": "",
+                        "ebs_optimized": false,
+                        "groups": {
+                            "sg-0a5074f7ba955c9a5": "appinst-vpca"
+                        },
+                        "hypervisor": "xen",
+                        "id": "i-07641a2e4a4b9f71b",
+                        "image_id": "ami-0a74bfeb190bd404f",
+                        "instance_type": "t2.micro",
+                        "kernel": null,
+                        "key_name": "myprimeadmkeypair",
+                        "launch_time": "2019-07-15T20:30:58.000Z",
+                        "placement": "ap-south-1a",
+                        "private_dns_name": "ip-10-0-6-146.ap-south-1.compute.internal",
+                        "private_ip": "10.0.6.146",
+                        "public_dns_name": "",
+                        "public_ip": null,
+                        "ramdisk": null,
+                        "region": "ap-south-1",
+                        "root_device_name": "/dev/sda1",
+                        "root_device_type": "ebs",
+                        "state": "running",
+                        "state_code": 16,
+                        "tags": {
+                            "Name": "INST3-SUBPRI2-VPCA",
+                            "Privateip": "INST3SUBPRI2VPCAPRIVATEIP",
+                            "Publicip": "INST3SUBPRI2VPCAPUBLICIP"
+                        },
+                        "tenancy": "default",
+                        "virtualization_type": "hvm"
+                    }
+                ],
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": null,
+                        "aws_access_key": null,
+                        "aws_secret_key": null,
+                        "count": 1,
+                        "count_tag": {
+                            "application": "appservers"
+                        },
+                        "debug_botocore_endpoint_logs": false,
+                        "ebs_optimized": false,
+                        "ec2_url": null,
+                        "exact_count": null,
+                        "group": null,
+                        "group_id": [
+                            "sg-0a5074f7ba955c9a5"
+                        ],
+                        "id": null,
+                        "image": "ami-0a74bfeb190bd404f",
+                        "instance_ids": null,
+                        "instance_initiated_shutdown_behavior": "stop",
+                        "instance_profile_name": null,
+                        "instance_tags": {
+                            "Name": "INST3-SUBPRI2-VPCA",
+                            "Privateip": "INST3SUBPRI2VPCAPRIVATEIP",
+                            "Publicip": "INST3SUBPRI2VPCAPUBLICIP"
+                        },
+                        "instance_type": "t2.micro",
+                        "kernel": null,
+                        "key_name": "myprimeadmkeypair",
+                        "monitoring": false,
+                        "network_interfaces": null,
+                        "placement_group": null,
+                        "private_ip": null,
+                        "profile": null,
+                        "ramdisk": null,
+                        "region": "ap-south-1",
+                        "security_token": null,
+                        "source_dest_check": null,
+                        "spot_launch_group": null,
+                        "spot_price": null,
+                        "spot_type": "one-time",
+                        "spot_wait_timeout": 600,
+                        "state": "present",
+                        "tenancy": "default",
+                        "termination_protection": null,
+                        "user_data": null,
+                        "validate_certs": true,
+                        "volumes": null,
+                        "vpc_subnet_id": "subnet-0f4d069d6cb4cfb9f",
+                        "wait": true,
+                        "wait_timeout": 300,
+                        "zone": null
+                    }
+                },
+                "item": [
+                    {
+                        "instname": "INST3-SUBPRI2-VPCA"
+                    },
+                    {
+                        "insasspubip": false,
+                        "inscount": 1,
+                        "insimage": "ami-0a74bfeb190bd404f",
+                        "inskeyname": "myprimeadmkeypair",
+                        "inspriiptag": "INST3SUBPRI2VPCAPRIVATEIP",
+                        "inspubiptag": "INST3SUBPRI2VPCAPUBLICIP",
+                        "insregion": "ap-south-1",
+                        "inssecgrp": "sg-0a5074f7ba955c9a5",
+                        "instags": "INSTANCESUBPRI2VPCA-INST2-SUBPRI2-VPCA",
+                        "instype": "t2.micro",
+                        "insvpcsubnetid": "subnet-0f4d069d6cb4cfb9f"
+                    }
+                ],
+                "tagged_instances": []
+            }
+        ]
+    }
+}
+
+TASK [setfactsget public ipaddresses of instances into dict] *********************************************************************
+ok: [localhost] => (item={'changed': True, 'instance_ids': ['i-07641a2e4a4b9f71b'], 'instances': [{'id': 'i-07641a2e4a4b9f71b', 'ami_launch_index': '0', 'private_ip': '10.0.6.146', 'private_dns_name': 'ip-10-0-6-146.ap-south-1.compute.internal', 'public_ip': None, 'dns_name': '', 'public_dns_name': '', 'state_code': 16, 'architecture': 'x86_64', 'image_id': 'ami-0a74bfeb190bd404f', 'key_name': 'myprimeadmkeypair', 'placement': 'ap-south-1a', 'region': 'ap-south-1', 'kernel': None, 'ramdisk': None, 'launch_time': '2019-07-15T20:30:58.000Z', 'instance_type': 't2.micro', 'root_device_type': 'ebs', 'root_device_name': '/dev/sda1', 'state': 'running', 'hypervisor': 'xen', 'tags': {'Name': 'INST3-SUBPRI2-VPCA', 'Publicip': 'INST3SUBPRI2VPCAPUBLICIP', 'Privateip': 'INST3SUBPRI2VPCAPRIVATEIP'}, 'groups': {'sg-0a5074f7ba955c9a5': 'appinst-vpca'}, 'virtualization_type': 'hvm', 'ebs_optimized': False, 'block_device_mapping': {'/dev/sda1': {'status': 'attached', 'volume_id': 'vol-05cf9b71ac07b8ada', 'delete_on_termination': True}}, 'tenancy': 'default'}], 'tagged_instances': [], 'invocation': {'module_args': {'key_name': 'myprimeadmkeypair', 'instance_type': 't2.micro', 'image': 'ami-0a74bfeb190bd404f', 'region': 'ap-south-1', 'group_id': ['sg-0a5074f7ba955c9a5'], 'wait': True, 'instance_tags': {'Name': 'INST3-SUBPRI2-VPCA', 'Publicip': 'INST3SUBPRI2VPCAPUBLICIP', 'Privateip': 'INST3SUBPRI2VPCAPRIVATEIP'}, 'count': 1, 'count_tag': {'application': 'appservers'}, 'vpc_subnet_id': 'subnet-0f4d069d6cb4cfb9f', 'state': 'present', 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'spot_type': 'one-time', 'monitoring': False, 'wait_timeout': 300, 'spot_wait_timeout': 600, 'instance_initiated_shutdown_behavior': 'stop', 'ebs_optimized': False, 'tenancy': 'default', 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'id': None, 'group': None, 'zone': None, 'spot_price': None, 'spot_launch_group': None, 'kernel': None, 'ramdisk': None, 'placement_group': None, 'user_data': None, 'assign_public_ip': None, 'private_ip': None, 'instance_profile_name': None, 'instance_ids': None, 'source_dest_check': None, 'termination_protection': None, 'exact_count': None, 'volumes': None, 'network_interfaces': None}}, 'failed': False, 'item': [{'instname': 'INST3-SUBPRI2-VPCA'}, {'inskeyname': 'myprimeadmkeypair', 'instype': 't2.micro', 'insimage': 'ami-0a74bfeb190bd404f', 'insregion': 'ap-south-1', 'inssecgrp': 'sg-0a5074f7ba955c9a5', 'instags': 'INSTANCESUBPRI2VPCA-INST2-SUBPRI2-VPCA', 'inspubiptag': 'INST3SUBPRI2VPCAPUBLICIP', 'inspriiptag': 'INST3SUBPRI2VPCAPRIVATEIP', 'inscount': 1, 'insvpcsubnetid': 'subnet-0f4d069d6cb4cfb9f', 'insasspubip': False}], 'ansible_loop_var': 'item'})
+
+TASK [debug pubsubs_vpca_instances] **********************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        {
+            "INST3-SUBPRI2-VPCA": [
+                "i-07641a2e4a4b9f71b"
+            ]
+        },
+        {
+            "INST3SUBPRI2VPCAPUBLICIP": null
+        },
+        {
+            "INST3SUBPRI2VPCAPRIVATEIP": "10.0.6.146"
+        }
+    ]
+}
+
+TASK [copy all6yaml to all7yaml] *************************************************************************************************
+changed: [localhost]
+
+TASK [replace the keys and values from loops] ************************************************************************************
+changed: [localhost] => (item={'key': 'INST3SUBPRI2VPCAPRIVATEIP', 'value': '10.0.6.146'})
+
+TASK [replace the keys and values from loops] ************************************************************************************
+changed: [localhost] => (item={'key': 'INST3-SUBPRI2-VPCA', 'value': ['i-07641a2e4a4b9f71b']})
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=8    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [localhost]
+
+TASK [create appserver sec groups] ***********************************************************************************************
+fatal: [localhost]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'dict object' has no attribute 'sectarget2'\n\nThe error appears to be in '/etc/ansible/ap-south-1/9_auto-create-dbsrv-secgrp.yaml': line 6, column 9, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n    tasks:\n      - name: create appserver sec groups\n        ^ here\n"}
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [localhost]
+
+TASK [create appserver sec groups] ***********************************************************************************************
+fatal: [localhost]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'dict object' has no attribute 'sectarget2'\n\nThe error appears to be in '/etc/ansible/ap-south-1/9_auto-create-dbsrv-secgrp.yaml': line 6, column 9, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n    tasks:\n      - name: create appserver sec groups\n        ^ here\n"}
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [localhost]
+
+TASK [create appserver sec groups] ***********************************************************************************************
+fatal: [localhost]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'dict object' has no attribute 'sectarget2'\n\nThe error appears to be in '/etc/ansible/ap-south-1/9_auto-create-dbsrv-secgrp.yaml': line 6, column 9, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n    tasks:\n      - name: create appserver sec groups\n        ^ here\n"}
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [localhost]
+
+TASK [create appserver sec groups] ***********************************************************************************************
+changed: [localhost] => (item=[{'secgrpname': 'dbinst-vpca'}, {'secgrpdesc': 'sec grp for db servers for vpca', 'secvpcid': 'vpc-0189dd71d9ff0b91b', 'secregion': 'ap-south-1', 'sectarget1': '10.0.6.0/24', 'sectarget2': '10.0.5.0/24', 'sectarget3': '10.0.10.0/24'}])
+
+TASK [set facts of dbservers_group] **********************************************************************************************
+ok: [localhost] => (item={'changed': True, 'description': 'sec grp for db servers for vpca', 'group_name': 'dbinst-vpca', 'ip_permissions': [{'from_port': 22, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '10.0.6.0/24'}, {'cidr_ip': '10.0.5.0/24'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 22, 'user_id_group_pairs': []}, {'from_port': 3306, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '10.0.6.0/24'}, {'cidr_ip': '10.0.5.0/24'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 3306, 'user_id_group_pairs': []}, {'from_port': 3389, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '10.0.5.0/24'}, {'cidr_ip': '10.0.6.0/24'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 3389, 'user_id_group_pairs': []}], 'owner_id': '802778636482', 'group_id': 'sg-0e468f5d8f7e95b38', 'ip_permissions_egress': [{'from_port': 80, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '10.0.6.0/24'}, {'cidr_ip': '10.0.5.0/24'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 80, 'user_id_group_pairs': []}], 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'tags': {}, 'invocation': {'module_args': {'name': 'dbinst-vpca', 'description': 'sec grp for db servers for vpca', 'region': 'ap-south-1', 'vpc_id': 'vpc-0189dd71d9ff0b91b', 'rules': [{'proto': 'tcp', 'from_port': 3389, 'to_port': 3389, 'cidr_ip': '10.0.6.0/24'}, {'proto': 'tcp', 'from_port': 3389, 'to_port': 3389, 'cidr_ip': '10.0.5.0/24'}, {'proto': 'tcp', 'from_port': 3306, 'to_port': 3306, 'cidr_ip': '10.0.6.0/24'}, {'proto': 'tcp', 'from_port': 3306, 'to_port': 3306, 'cidr_ip': '10.0.5.0/24'}, {'proto': 'tcp', 'from_port': 22, 'to_port': 22, 'cidr_ip': '10.0.6.0/24'}, {'proto': 'tcp', 'from_port': 22, 'to_port': 22, 'cidr_ip': '10.0.5.0/24'}], 'rules_egress': [{'proto': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_ip': '10.0.6.0/24'}, {'proto': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_ip': '10.0.5.0/24'}], 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'state': 'present', 'purge_rules': True, 'purge_rules_egress': True, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'group_id': None, 'tags': None}}, 'failed': False, 'item': [{'secgrpname': 'dbinst-vpca'}, {'secgrpdesc': 'sec grp for db servers for vpca', 'secvpcid': 'vpc-0189dd71d9ff0b91b', 'secregion': 'ap-south-1', 'sectarget1': '10.0.6.0/24', 'sectarget2': '10.0.5.0/24', 'sectarget3': '10.0.10.0/24'}], 'ansible_loop_var': 'item'})
+
+TASK [debugapsouth1_dbsecgrps] ***************************************************************************************************
+ok: [localhost] => (item={'key': 'dbinst-vpca', 'value': 'sg-0e468f5d8f7e95b38'}) => {
+    "msg": "dbinst-vpca : sg-0e468f5d8f7e95b38"
+}
+
+TASK [copy var file all7.yaml to all8.yaml] **************************************************************************************
+changed: [localhost]
+
+TASK [replace dbwebserv sec grp names with sec grp ids in var file all8.yaml] ****************************************************
+changed: [localhost] => (item={'key': 'dbinst-vpca', 'value': 'sg-0e468f5d8f7e95b38'})
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [localhost]
+
+TASK [create instances for db servers] *******************************************************************************************
+changed: [localhost] => (item=[{'instname': 'INST4-SUBPRI3-VPCA'}, {'inskeyname': 'myprimeadmkeypair', 'instype': 't2.micro', 'insimage': 'ami-0a74bfeb190bd404f', 'insregion': 'ap-south-1', 'inssecgrp': 'sg-0e468f5d8f7e95b38', 'instags': 'INSTANCESUBPRI3VPCA-INST4-SUBPRI3-VPCA', 'inspubiptag': 'INST4SUBPRI3VPCAPUBLICIP', 'inspriiptag': 'INST4SUBPRI3VPCAPRIVATEIP', 'inscount': 1, 'insvpcsubnetid': 'subnet-0c4bc2ad9da77b24c', 'insasspubip': False}])
+
+TASK [debug] *********************************************************************************************************************
+ok: [localhost] => {
+    "msg": {
+        "changed": true,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "failed": false,
+                "instance_ids": [
+                    "i-01dfe6d47865f39eb"
+                ],
+                "instances": [
+                    {
+                        "ami_launch_index": "0",
+                        "architecture": "x86_64",
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true,
+                                "status": "attached",
+                                "volume_id": "vol-0a3bdb61eb7018480"
+                            }
+                        },
+                        "dns_name": "",
+                        "ebs_optimized": false,
+                        "groups": {
+                            "sg-0e468f5d8f7e95b38": "dbinst-vpca"
+                        },
+                        "hypervisor": "xen",
+                        "id": "i-01dfe6d47865f39eb",
+                        "image_id": "ami-0a74bfeb190bd404f",
+                        "instance_type": "t2.micro",
+                        "kernel": null,
+                        "key_name": "myprimeadmkeypair",
+                        "launch_time": "2019-07-15T20:50:40.000Z",
+                        "placement": "ap-south-1a",
+                        "private_dns_name": "ip-10-0-7-23.ap-south-1.compute.internal",
+                        "private_ip": "10.0.7.23",
+                        "public_dns_name": "",
+                        "public_ip": null,
+                        "ramdisk": null,
+                        "region": "ap-south-1",
+                        "root_device_name": "/dev/sda1",
+                        "root_device_type": "ebs",
+                        "state": "running",
+                        "state_code": 16,
+                        "tags": {
+                            "Name": "INST4-SUBPRI3-VPCA",
+                            "Privateip": "INST4SUBPRI3VPCAPRIVATEIP",
+                            "Publicip": "INST4SUBPRI3VPCAPUBLICIP"
+                        },
+                        "tenancy": "default",
+                        "virtualization_type": "hvm"
+                    }
+                ],
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": null,
+                        "aws_access_key": null,
+                        "aws_secret_key": null,
+                        "count": 1,
+                        "count_tag": {
+                            "application": "dbservers"
+                        },
+                        "debug_botocore_endpoint_logs": false,
+                        "ebs_optimized": false,
+                        "ec2_url": null,
+                        "exact_count": null,
+                        "group": null,
+                        "group_id": [
+                            "sg-0e468f5d8f7e95b38"
+                        ],
+                        "id": null,
+                        "image": "ami-0a74bfeb190bd404f",
+                        "instance_ids": null,
+                        "instance_initiated_shutdown_behavior": "stop",
+                        "instance_profile_name": null,
+                        "instance_tags": {
+                            "Name": "INST4-SUBPRI3-VPCA",
+                            "Privateip": "INST4SUBPRI3VPCAPRIVATEIP",
+                            "Publicip": "INST4SUBPRI3VPCAPUBLICIP"
+                        },
+                        "instance_type": "t2.micro",
+                        "kernel": null,
+                        "key_name": "myprimeadmkeypair",
+                        "monitoring": false,
+                        "network_interfaces": null,
+                        "placement_group": null,
+                        "private_ip": null,
+                        "profile": null,
+                        "ramdisk": null,
+                        "region": "ap-south-1",
+                        "security_token": null,
+                        "source_dest_check": null,
+                        "spot_launch_group": null,
+                        "spot_price": null,
+                        "spot_type": "one-time",
+                        "spot_wait_timeout": 600,
+                        "state": "present",
+                        "tenancy": "default",
+                        "termination_protection": null,
+                        "user_data": null,
+                        "validate_certs": true,
+                        "volumes": null,
+                        "vpc_subnet_id": "subnet-0c4bc2ad9da77b24c",
+                        "wait": true,
+                        "wait_timeout": 300,
+                        "zone": null
+                    }
+                },
+                "item": [
+                    {
+                        "instname": "INST4-SUBPRI3-VPCA"
+                    },
+                    {
+                        "insasspubip": false,
+                        "inscount": 1,
+                        "insimage": "ami-0a74bfeb190bd404f",
+                        "inskeyname": "myprimeadmkeypair",
+                        "inspriiptag": "INST4SUBPRI3VPCAPRIVATEIP",
+                        "inspubiptag": "INST4SUBPRI3VPCAPUBLICIP",
+                        "insregion": "ap-south-1",
+                        "inssecgrp": "sg-0e468f5d8f7e95b38",
+                        "instags": "INSTANCESUBPRI3VPCA-INST4-SUBPRI3-VPCA",
+                        "instype": "t2.micro",
+                        "insvpcsubnetid": "subnet-0c4bc2ad9da77b24c"
+                    }
+                ],
+                "tagged_instances": []
+            }
+        ]
+    }
+}
+
+TASK [setfactsget public ipaddresses of instances into dict] *********************************************************************
+ok: [localhost] => (item={'changed': True, 'instance_ids': ['i-01dfe6d47865f39eb'], 'instances': [{'id': 'i-01dfe6d47865f39eb', 'ami_launch_index': '0', 'private_ip': '10.0.7.23', 'private_dns_name': 'ip-10-0-7-23.ap-south-1.compute.internal', 'public_ip': None, 'dns_name': '', 'public_dns_name': '', 'state_code': 16, 'architecture': 'x86_64', 'image_id': 'ami-0a74bfeb190bd404f', 'key_name': 'myprimeadmkeypair', 'placement': 'ap-south-1a', 'region': 'ap-south-1', 'kernel': None, 'ramdisk': None, 'launch_time': '2019-07-15T20:50:40.000Z', 'instance_type': 't2.micro', 'root_device_type': 'ebs', 'root_device_name': '/dev/sda1', 'state': 'running', 'hypervisor': 'xen', 'tags': {'Name': 'INST4-SUBPRI3-VPCA', 'Publicip': 'INST4SUBPRI3VPCAPUBLICIP', 'Privateip': 'INST4SUBPRI3VPCAPRIVATEIP'}, 'groups': {'sg-0e468f5d8f7e95b38': 'dbinst-vpca'}, 'virtualization_type': 'hvm', 'ebs_optimized': False, 'block_device_mapping': {'/dev/sda1': {'status': 'attached', 'volume_id': 'vol-0a3bdb61eb7018480', 'delete_on_termination': True}}, 'tenancy': 'default'}], 'tagged_instances': [], 'invocation': {'module_args': {'key_name': 'myprimeadmkeypair', 'instance_type': 't2.micro', 'image': 'ami-0a74bfeb190bd404f', 'region': 'ap-south-1', 'group_id': ['sg-0e468f5d8f7e95b38'], 'wait': True, 'instance_tags': {'Name': 'INST4-SUBPRI3-VPCA', 'Publicip': 'INST4SUBPRI3VPCAPUBLICIP', 'Privateip': 'INST4SUBPRI3VPCAPRIVATEIP'}, 'count': 1, 'count_tag': {'application': 'dbservers'}, 'vpc_subnet_id': 'subnet-0c4bc2ad9da77b24c', 'state': 'present', 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'spot_type': 'one-time', 'monitoring': False, 'wait_timeout': 300, 'spot_wait_timeout': 600, 'instance_initiated_shutdown_behavior': 'stop', 'ebs_optimized': False, 'tenancy': 'default', 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'id': None, 'group': None, 'zone': None, 'spot_price': None, 'spot_launch_group': None, 'kernel': None, 'ramdisk': None, 'placement_group': None, 'user_data': None, 'assign_public_ip': None, 'private_ip': None, 'instance_profile_name': None, 'instance_ids': None, 'source_dest_check': None, 'termination_protection': None, 'exact_count': None, 'volumes': None, 'network_interfaces': None}}, 'failed': False, 'item': [{'instname': 'INST4-SUBPRI3-VPCA'}, {'inskeyname': 'myprimeadmkeypair', 'instype': 't2.micro', 'insimage': 'ami-0a74bfeb190bd404f', 'insregion': 'ap-south-1', 'inssecgrp': 'sg-0e468f5d8f7e95b38', 'instags': 'INSTANCESUBPRI3VPCA-INST4-SUBPRI3-VPCA', 'inspubiptag': 'INST4SUBPRI3VPCAPUBLICIP', 'inspriiptag': 'INST4SUBPRI3VPCAPRIVATEIP', 'inscount': 1, 'insvpcsubnetid': 'subnet-0c4bc2ad9da77b24c', 'insasspubip': False}], 'ansible_loop_var': 'item'})
+
+TASK [debug prisubs_vpca_instances] **********************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        {
+            "INST4-SUBPRI3-VPCA": [
+                "i-01dfe6d47865f39eb"
+            ]
+        },
+        {
+            "INST4SUBPRI3VPCAPUBLICIP": null
+        },
+        {
+            "INST4SUBPRI3VPCAPRIVATEIP": "10.0.7.23"
+        }
+    ]
+}
+
+TASK [copy all8yaml to all9yaml] *************************************************************************************************
+changed: [localhost]
+
+TASK [replace the keys and values from loops] ************************************************************************************
+changed: [localhost] => (item={'key': 'INST4SUBPRI3VPCAPRIVATEIP', 'value': '10.0.7.23'})
+
+TASK [replace the keys and values from loops] ************************************************************************************
+changed: [localhost] => (item={'key': 'INST4-SUBPRI3-VPCA', 'value': ['i-01dfe6d47865f39eb']})
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=8    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [localhost]
+
+TASK [create route record for nat instances] *************************************************************************************
+changed: [localhost] => (item=[{'routename': 'rtb-0b8a8512b6877eacf'}, {'ngrvpc': 'vpc-0189dd71d9ff0b91b', 'ngrvpccidr': '10.0.0.0/16', 'ngrregion': 'ap-south-1', 'ngrsubnet': 'subnet-0c4bc2ad9da77b24c', 'ngrgatewayid': 'nat-0311821a7a8323457', 'ngrrouteid': 'rtb-0b8a8512b6877eacf'}])
+changed: [localhost] => (item=[{'routename': 'rtb-02ffc901b18c77929'}, {'ngrvpc': 'vpc-05715f6e510e2fc54', 'ngrvpccidr': '10.1.0.0/16', 'ngrregion': 'ap-south-1', 'ngrsubnet': 'subnet-0f0d71068b9316212', 'ngrgatewayid': 'nat-0c8092977a154c804', 'ngrrouteid': 'rtb-02ffc901b18c77929'}])
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
